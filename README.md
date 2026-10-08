@@ -38,7 +38,7 @@
 | 📓 **交互式分析 Notebook** | [notebooks/ecommerce_analysis.ipynb](notebooks/ecommerce_analysis.ipynb) |
 | 📈 **图表目录**（10 张） | [reports/figures/](reports/figures/) |
 | 📋 **指标明细表**（11 份 CSV） | [reports/tables/](reports/tables/) |
-| 💼 **面试讲解要点** | [docs/interview_notes.md](docs/interview_notes.md) |
+| 💼 **项目介绍文案** | [docs/project_intro.md](docs/project_intro.md) |
 
 > ⚠️ **报告与网页请用在线链接打开**：GitHub 不渲染仓库里的 `.html` 文件（点开会显示源码），
 > 所以完整报告和项目主页都通过 GitHub Pages 在线查看（见上表链接）。
@@ -69,8 +69,7 @@ ecommerce-sales-analysis/
 ├── notebooks/
 │   └── ecommerce_analysis.ipynb  交互式分析笔记（含全部输出）
 ├── docs/
-│   ├── interview_notes.md        项目讲解要点（面试可直接用）
-│   └── project_intro.md          项目简介文案包（简历/面试多版本）
+│   └── project_intro.md          项目介绍文案包（简历/作品集多版本）
 └── reports/
     ├── figures/                  10 张图表 PNG
     ├── tables/                   11 份指标明细 CSV
