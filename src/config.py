@@ -17,8 +17,9 @@ REPORT_DIR = ROOT / "reports"
 
 # 原始数据文件名（完整数据，本地运行用）
 RAW_DATA = RAW_DIR / "OnlineRetail.csv"
-# 压缩样本数据（随仓库提交，保证他人可跑通）
+# 压缩样本数据（随仓库提交，保证他人可跑通；优先 .csv.gz，其次 .csv）
 SAMPLE_DATA = PROCESSED_DIR / "OnlineRetail_sample.csv"
+SAMPLE_DATA_GZ = PROCESSED_DIR / "OnlineRetail_sample.csv.gz"
 
 # 数据编码：源文件为 latin1（含 £ 等特殊字符）
 RAW_ENCODING = "latin1"

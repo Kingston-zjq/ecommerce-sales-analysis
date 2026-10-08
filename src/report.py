@@ -14,13 +14,15 @@ def _img_b64(name: str) -> str:
     return f"data:image/png;base64,{data}"
 
 
-def _figure(name: str, caption: str) -> str:
+def _figure(name: str, caption: str, note: str = "") -> str:
     b64 = _img_b64(name)
     if not b64:
         return ""
+    note_html = f'<figcaption class="note">{note}</figcaption>' if note else ""
     return f"""<figure>
   <img src="{b64}" alt="{caption}">
   <figcaption>{caption}</figcaption>
+  {note_html}
 </figure>"""
 
 
@@ -54,9 +56,9 @@ def build_report(metrics: dict) -> str:
     sections.append(f"""
 <section>
   <h2>二、销售趋势与节奏</h2>
-  {_figure("fig01_monthly_trend.png", "月度销售趋势：销售额与订单数")}
-  {_figure("fig02_weekday.png", "星期维度销售额分布")}
-  {_figure("fig03_hour.png", "下单时段分布")}
+  {_figure("fig01_monthly_trend.png", "月度销售趋势：销售额与订单数", "销售额在 2011 年 9 月冲上全年峰值（约 £96,836），随后 10-11 月订单量继续攀升、11 月订单数达到最高的 174 单——这是典型的圣诞备货节奏，旺季从 9 月启动、11 月进入备货高峰。")}
+  {_figure("fig02_weekday.png", "星期维度销售额分布", "周二至周四为销售主力，其中周四销售额最高（约 £127,622）；周六几乎无交易（约 0），结合客户以批发商为主的特征，说明这是一个典型的 B2B 工作日下单模式。")}
+  {_figure("fig03_hour.png", "下单时段分布", "下单集中在上午 11 点左右达到峰值（约 £93,816），10-15 点为全天最活跃时段，与批发商的工作作息高度吻合，可用于安排客服与仓配排班。")}
 </section>
 """)
 
@@ -64,8 +66,8 @@ def build_report(metrics: dict) -> str:
     sections.append(f"""
 <section>
   <h2>三、商品与国家结构</h2>
-  {_figure("fig04_country.png", "销售额 Top 国家")}
-  {_figure("fig05_product.png", "商品销售额 Top 10")}
+  {_figure("fig04_country.png", "销售额 Top 国家", "英国本土贡献了约 83% 的销售额，处于绝对主导地位；荷兰、爱尔兰（EIRE）虽订单数少，但客单价极高（荷兰客单价约 £4,828），是典型的大宗批发客户。")}
+  {_figure("fig05_product.png", "商品销售额 Top 10", "销售集中在茶具、蛋糕架、装饰摆件等家居礼品类；Top1 商品（Regency 三层蛋糕架）单件贡献约 15.6% 的销售额，头部商品集中度较高，说明礼品类目是核心品类。")}
 </section>
 """)
 
@@ -78,8 +80,8 @@ def build_report(metrics: dict) -> str:
   <p>基于近度（Recency）、频次（Frequency）、金额（Monetary）三维度将客户划分为
   六类，识别高价值客群与流失风险客群。</p>
   {rfm_html}
-  {_figure("fig06_rfm.png", "客户价值分群构成")}
-  {_figure("fig07_rfm_scatter.png", "客户 RFM 分布")}
+  {_figure("fig06_rfm.png", "客户价值分群构成", "「重要价值客户」仅 129 人，却贡献了约 £241k（占总消费近一半），是高价值核心客群，应重点维护；「流失客户」108 人则是召回营销的首要目标。")}
+  {_figure("fig07_rfm_scatter.png", "客户 RFM 分布", "大部分客户集中在低频低消费区域（左下角），仅少数客户同时具备高消费额与高购买频次（右上角）——客户价值分布高度不均衡，符合典型的「二八分化」特征。")}
 </section>
 """)
 
@@ -92,8 +94,8 @@ def build_report(metrics: dict) -> str:
   <p>基于 Apriori 算法挖掘「购买 A 的顾客也倾向购买 B」的关联规则，用于捆绑销售与
   交叉推荐。下表为按提升度（Lift）排序的 Top 规则，Lift &gt; 1 表示正相关。</p>
   {rules_html}
-  {_figure("fig08_rules.png", "关联规则提升度 Top 15")}
-  {_figure("fig09_rules_scatter.png", "关联规则散点")}
+  {_figure("fig08_rules.png", "关联规则提升度 Top 15", "关联度最高的规则几乎都是「同系列凑一套」的组合（如圣诞木星星 ↔ 圣诞木心形、Regency 茶具三件套），Lift 高达 20+，是天然的捆绑销售与交叉推荐对象。")}
+  {_figure("fig09_rules_scatter.png", "关联规则散点", "提升度高的规则集中在右下区域，说明这些规则支持度虽不高、但一旦出现就高度相关，适合做精准推荐而非广撒网促销。")}
 </section>
 """)
 
@@ -109,7 +111,7 @@ def build_report(metrics: dict) -> str:
   趋势不显著，移动平均在此场景下表现最优，说明预测应保持谨慎。</p>
   {cmp_html}
   {fc_html}
-  {_figure("fig10_forecast.png", "月度销售额与未来预测")}
+  {_figure("fig10_forecast.png", "月度销售额与未来预测", "历史序列波动大、无稳定趋势，移动平均在回测中表现最优（MAPE 约 56%）。预测值应视为趋势参考而非精确数字，短序列场景下简单模型比复杂模型更可靠。")}
 </section>
 """)
 
@@ -158,6 +160,11 @@ def build_report(metrics: dict) -> str:
   img {{ max-width: 100%; height: auto; border-radius: 6px; }}
   figure {{ margin: 20px 0; text-align: center; }}
   figcaption {{ color: var(--muted); font-size: 13px; margin-top: 8px; }}
+  figcaption.note {{
+    color: #1f2328; font-size: 14px; line-height: 1.7; margin-top: 10px;
+    text-align: left; background: #eef6fc; border-left: 3px solid #2C7BB6;
+    padding: 10px 14px; border-radius: 4px;
+  }}
   .tbl {{ width: 100%; border-collapse: collapse; font-size: 13px; margin: 16px 0; }}
   .tbl th, .tbl td {{ border: 1px solid var(--border); padding: 8px 10px; text-align: left; }}
   .tbl th {{ background: #f0f4f8; }}

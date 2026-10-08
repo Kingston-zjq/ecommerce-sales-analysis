@@ -9,14 +9,25 @@ import os
 import numpy as np
 import pandas as pd
 
-from src.config import RAW_DATA, RAW_ENCODING, SAMPLE_DATA
+from src.config import RAW_DATA, RAW_ENCODING, SAMPLE_DATA, SAMPLE_DATA_GZ
+
+
+def _resolve_sample_path():
+    """样本数据优先用 .csv，不存在则回退到 .csv.gz（pandas 可自动解压）。"""
+    if SAMPLE_DATA.exists():
+        return SAMPLE_DATA
+    if SAMPLE_DATA_GZ.exists():
+        return SAMPLE_DATA_GZ
+    return SAMPLE_DATA
 
 
 def load_raw() -> pd.DataFrame:
     """加载原始交易明细（默认样本，可切完整数据）。"""
     use_full = os.environ.get("USE_FULL_DATA") == "1"
-    path = RAW_DATA if (use_full and RAW_DATA.exists()) else SAMPLE_DATA
-    encoding = RAW_ENCODING if use_full else "utf-8-sig"
+    if use_full and RAW_DATA.exists():
+        path, encoding = RAW_DATA, RAW_ENCODING
+    else:
+        path, encoding = _resolve_sample_path(), "utf-8-sig"
     df = pd.read_csv(path, encoding=encoding, low_memory=False)
     df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"], errors="coerce")
     return df
