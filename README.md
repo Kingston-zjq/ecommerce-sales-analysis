@@ -34,13 +34,15 @@
 
 | 内容 | 入口 |
 | :--- | :--- |
-| 📊 **完整可视化报告**（含全部图表，强烈推荐） | [reports/report.html](reports/report.html) |
+| 📊 **完整可视化报告**（含全部图表，强烈推荐） | [点击在线查看](https://kingston-zjq.github.io/ecommerce-sales-analysis/reports/report.html) |
 | 📓 **交互式分析 Notebook** | [notebooks/ecommerce_analysis.ipynb](notebooks/ecommerce_analysis.ipynb) |
 | 📈 **图表目录**（10 张） | [reports/figures/](reports/figures/) |
 | 📋 **指标明细表**（11 份 CSV） | [reports/tables/](reports/tables/) |
 | 💼 **面试讲解要点** | [docs/interview_notes.md](docs/interview_notes.md) |
 
-> 如果 GitHub 上 Notebook 显示 "Unable to render code block"（GitHub 渲染器偶发问题），
+> ⚠️ **报告与网页请用在线链接打开**：GitHub 不渲染仓库里的 `.html` 文件（点开会显示源码），
+> 所以完整报告和项目主页都通过 GitHub Pages 在线查看（见上表链接）。
+> 若 Notebook 显示 "Unable to render code block"（GitHub 渲染器偶发问题），
 > 可用 nbviewer 兜底：
 > https://nbviewer.org/github/Kingston-zjq/ecommerce-sales-analysis/blob/main/notebooks/ecommerce_analysis.ipynb
 
