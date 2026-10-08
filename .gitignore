@@ -1,0 +1,12 @@
+# 原始完整数据（本地使用，不入库，太大）
+data/raw/*.csv
+
+# 运行时产生的临时文件
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+
+# Jupyter
+*.pyc
+.ipynb_checkpoints

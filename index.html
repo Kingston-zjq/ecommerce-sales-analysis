@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电商销售数据分析作品集 · Kingston-zjq</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #1f2328; --muted: #6a737d;
+    --accent: #2C7BB6; --accent2: #5E4FA2; --border: #e1e4e8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", "Microsoft YaHei", -apple-system, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.7;
+  }
+  .hero {
+    background: linear-gradient(135deg, #2C7BB6 0%, #5E4FA2 100%);
+    color: #fff; padding: 72px 24px; text-align: center;
+  }
+  .hero h1 { font-size: 34px; margin-bottom: 12px; }
+  .hero p { opacity: 0.92; font-size: 16px; max-width: 720px; margin: 0 auto; }
+  .badges { margin-top: 20px; }
+  .badges span {
+    display: inline-block; background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3); border-radius: 20px;
+    padding: 5px 16px; margin: 4px; font-size: 13px;
+  }
+  main { max-width: 980px; margin: -28px auto 0; padding: 0 20px 48px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 20px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: transform .15s, box-shadow .15s;
+    display: block; color: inherit; text-decoration: none;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.09); }
+  .card h3 { color: var(--accent); margin-bottom: 8px; font-size: 17px; }
+  .card p { color: var(--muted); font-size: 14px; }
+  .card .tag { display: inline-block; font-size: 12px; background: #eef4fa; color: var(--accent); border-radius: 12px; padding: 2px 10px; margin-top: 12px; }
+  h2.sec { text-align: center; margin: 40px 0 8px; font-size: 24px; color: var(--text); }
+  p.sec-desc { text-align: center; color: var(--muted); margin-bottom: 16px; font-size: 14px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; margin-top: 28px; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; text-align: center; }
+  .stat b { display: block; font-size: 24px; color: var(--accent2); }
+  .stat span { font-size: 13px; color: var(--muted); }
+  footer { text-align: center; color: var(--muted); padding: 32px 20px; font-size: 13px; }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <h1>电商销售数据分析作品集</h1>
+  <p>基于 UCI Online Retail 真实电商交易数据（英国线上零售商，2010-12 ~ 2011-12），
+     完成从数据清洗、销售分析、RFM 客户分层、购物篮关联规则到销售预测的完整链路。</p>
+  <div class="badges">
+    <span>Python</span><span>pandas</span><span>RFM 模型</span><span>Apriori 关联规则</span><span>时间序列预测</span><span>54万行真实数据</span>
+  </div>
+</section>
+
+<main>
+  <div class="stats">
+    <div class="stat"><b>541,909</b><span>交易行数</span></div>
+    <div class="stat"><b>4,372</b><span>客户数</span></div>
+    <div class="stat"><b>4,070</b><span>商品数</span></div>
+    <div class="stat"><b>13</b><span>个月跨度</span></div>
+  </div>
+
+  <h2 class="sec">项目入口</h2>
+  <p class="sec-desc">点击卡片直达对应内容</p>
+  <div class="grid">
+    <a class="card" href="reports/report.html">
+      <h3>📊 完整可视化报告</h3>
+      <p>10 张图表 + 全部结论解读，自包含 HTML，手机也能直接看。推荐从这里开始。</p>
+      <span class="tag">推荐</span>
+    </a>
+    <a class="card" href="https://github.com/Kingston-zjq/ecommerce-sales-analysis/blob/main/notebooks/ecommerce_analysis.ipynb">
+      <h3>📓 交互式 Notebook</h3>
+      <p>30 个 cell，逐段代码 + 输出，展示完整分析过程与每一步的思考。</p>
+      <span class="tag">代码</span>
+    </a>
+    <a class="card" href="https://github.com/Kingston-zjq/ecommerce-sales-analysis">
+      <h3>💾 GitHub 仓库</h3>
+      <p>全部源码模块化封装，python scripts/run_all.py 一键复现，含面试讲解文档。</p>
+      <span class="tag">源码</span>
+    </a>
+  </div>
+
+  <h2 class="sec">核心发现</h2>
+  <p class="sec-desc">数据驱动的四个业务结论</p>
+  <div class="grid">
+    <div class="card">
+      <h3>🎄 销售节奏</h3>
+      <p>9-11 月是圣诞备货旺季，9 月峰值 £97k；周中下单高峰、周六不营业、10-15 点集中，客户以批发商为主。</p>
+    </div>
+    <div class="card">
+      <h3>👥 RFM 客户分层</h3>
+      <p>129 位「重要价值客户」贡献 46% 收入；91 位「重要挽留客户」是高价值流失风险人群，需定向召回。</p>
+    </div>
+    <div class="card">
+      <h3>🛒 购物篮关联</h3>
+      <p>Apriori 挖掘出 Lift 20+ 的强关联：圣诞系列、园艺跪垫、Regency 茶具——同系列「凑一套」心理，天然捆绑组合。</p>
+    </div>
+    <div class="card">
+      <h3>📈 销售预测</h3>
+      <p>13 个月短序列上移动平均最优（MAPE 56%）。诚实结论：数据量不支持复杂模型，简单模型更稳。</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>作者：Kingston-zjq · 数据来源：<a href="https://archive.ics.uci.edu/dataset/352/online+retail">UCI Online Retail</a></p>
+  <p><a href="https://github.com/Kingston-zjq">GitHub 主页</a> · <a href="https://github.com/Kingston-zjq/baby-data-analysis-portfolio">上一个项目：母婴电商分析</a></p>
+</footer>
+
+</body>
+</html>
